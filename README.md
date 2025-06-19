@@ -1,36 +1,73 @@
 # BuildPage
 Functionality Implemented:
-GET Mini Projects
+1. Mini Projects
 Route: GET /api/mini-projects
 
 Purpose: Fetch and return all mini project data from the database.
 
-Access: Open to all users (no authentication needed).
+Access: Public (no authentication or club check).
 
 Response: JSON array of mini project objects.
 
-Backend Stack Used:
-Server: Node.js + Express.js
+Tested Using: Postman and curl
 
-Database: MongoDB (local instance: mongodb://127.0.0.1:27017/mini-projects)
+2. Major Projects
+Routes:
+
+GET /api/major-projects – View all major projects.
+
+POST /api/major-projects – Add a new major project.
+
+Access Logic:
+
+First 3 projects are free for everyone.
+
+Other projects are locked (i.e., isFree: false) and should only be accessed/booked by club members.
+
+Database Fields: title, description, isFree (Boolean)
+
+3. Booking Log System
+Route: POST /api/booking
+
+Purpose: Log booking attempts for major projects.
+
+Fields: projectId, userEmail
+
+Flow:
+
+If the project is free, booking is successful.
+
+If the project is locked, booking is logged with status "pending" (indicating membership is required).
+
+
+🛠️ Tech Stack Used
+Backend: Node.js + Express.js
+
+Database: MongoDB
 
 ODM: Mongoose
 
-Other Tools: CORS, body-parser (via express.json())
+Tools: CORS, Express JSON Parser
 
-Directory Structure (Relevant to Mini Projects):
+
+
+Directory Structure :
 build_page/
 ├── app.js
 ├── config/
-│   └── db.js             
+│   └── db.js
 ├── models/
-│   └── Mini.js          
+│   ├── Mini.js
+│   ├── Major.js
+│   └── Booking.js
 ├── routes/
-│   └── mini.js           
+│   ├── mini.js
+│   ├── major.js
+│   └── Booking.js
 ├── controllers/
-│   └── miniController.js
+│   ├── miniController.js
+│   ├── majorController.js
+│   └── bookingController.js
 
-Testing Performed:
-Used curl to test GET endpoint:
-curl -X GET http://localhost:5000/api/mini-projects
-Result: Received empty array initially ([]). After adding sample entries, correct data was retrieved in JSON format.
+
+
