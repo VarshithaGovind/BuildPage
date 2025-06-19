@@ -40,7 +40,7 @@ If the project is free, booking is successful.
 If the project is locked, booking is logged with status "pending" (indicating membership is required).
 
 
-🛠️ Tech Stack Used
+Tech Stack Used
 Backend: Node.js + Express.js
 
 Database: MongoDB
